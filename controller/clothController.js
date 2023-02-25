@@ -1,9 +1,7 @@
-//const fs = require ('fs');
-//const Cloth = require('./../controller/clothController')
 const products = require('./../model/product');
 
-//const clothes = JSON.parse (fs.readFileSync(`${__dirname}/../dev-data/data/clothes-collection.json`));
 
+//get cloth
 exports.getAllClothes = (req,res) =>{
     res.status(200).json({
         status: 'success',
@@ -16,7 +14,7 @@ exports.getAllClothes = (req,res) =>{
     });
 }
 
-
+//get cloth id
 exports.getCloth = (req,res) =>{
     //console.log(req.params)
     const  id = req.params.id*1;

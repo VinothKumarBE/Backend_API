@@ -1,33 +1,51 @@
 const products = require('./../model/product');
 
 
-//get cloth
-exports.getAllClothes = (req,res) =>{
+//getall
+
+exports.getAllClothes = async (req,res) =>{
+try{
+   const cloths = await products.find()
+     
     res.status(200).json({
         status: 'success',
-        results: clothes.length,
-        resultAt: Date(),
+        results: cloths.length,
         data:{
 
-              clothes
+              cloths
         }
+    });
+
+}catch(err){
+
+
+    res.status(404).json({
+        status: 'fail',
+        message: err
     });
 }
+    
+};
 
-//get cloth id
-exports.getCloth = (req,res) =>{
-    //console.log(req.params)
-    const  id = req.params.id*1;
-    const cloth = clothes.find(el =>el.id ===id)
+//get cloth
+
+exports.getCloth = async (req,res) =>{
+   try{
+    const cloth= await products.findById(req.params.id);
+
     res.status(200).json({
          status: 'success',
-        results: clothes.length,
-        resultAt: req.requestTime,
-        data:{
-
-            cloth
+         data:{
+                 cloth
         }
     });
+}catch(err){
+    res.status(404).json({
+        status: 'fail',
+        message: err
+    })
+
+}
 }
 
 //post 

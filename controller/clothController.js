@@ -1,6 +1,8 @@
-const fs = require ('fs');
+//const fs = require ('fs');
+//const Cloth = require('./../controller/clothController')
+const products = require('./../model/product');
 
-const clothes = JSON.parse (fs.readFileSync(`${__dirname}/../dev-data/data/clothes-collection.json`));
+//const clothes = JSON.parse (fs.readFileSync(`${__dirname}/../dev-data/data/clothes-collection.json`));
 
 exports.getAllClothes = (req,res) =>{
     res.status(200).json({
@@ -29,3 +31,24 @@ exports.getCloth = (req,res) =>{
         }
     });
 }
+
+//post 
+exports.addClothes= async (req, res)=>{ 
+    try{
+        
+       const newCloth = await  products.create(req.body)
+        res.status(201).json({
+            status: 'success',
+            data:{
+                cloth: newCloth
+            }
+        });
+
+    }catch(err){
+        res.status(400).json({
+            status:'fail',
+            message: err
+        })
+
+    }
+};

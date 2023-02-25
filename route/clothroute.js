@@ -4,9 +4,10 @@ const  clothController = require('../controller/clothController')
 const router = express.Router();
 
 
-router
+router      
 .route('/')
 .get(clothController.getAllClothes)
+.post(clothController.addClothes);
 
 router
 .route('/:id')
